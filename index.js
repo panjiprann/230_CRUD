@@ -65,3 +65,12 @@ app.put('/api/mahasiswa/:id', (req, res) => {
     db.query(
         'UPDATE mahasiswa SET nama = ?, nim = ?, kelas = ?, prodi = ? WHERE id = ?',
         [nama, nim, kelas, prodi, userId],
+        (err, results) => {
+            if (err) {
+                console.error(stack);
+                return res.status(500).json({ message: 'Error updating mahasiswa' });
+            }
+            res.json({ message: 'User updated successfully' });
+        }
+    );
+});
