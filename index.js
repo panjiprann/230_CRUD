@@ -51,7 +51,7 @@ app.post('/api/mahasiswa', (req, res) => {
         [nama, nim, kelas, prodi],
         (err, results) => {
             if (err) {
-                console.error(stack);
+                console.error(err);
                 return res.status(500).json({ message: 'Error adding mahasiswa'});
             }
             res.status(201).json({ message: 'User added successfully'});
@@ -67,7 +67,7 @@ app.put('/api/mahasiswa/:id', (req, res) => {
         [nama, nim, kelas, prodi, userId],
         (err, results) => {
             if (err) {
-                console.error(stack);
+                console.error(err);
                 return res.status(500).json({ message: 'Error updating mahasiswa' });
             }
             res.json({ message: 'User updated successfully' });
@@ -79,7 +79,7 @@ app.delete('/api/mahasiswa/:id', (req, res) => {
     const userId = req.params.id;
     db.query('DELETE FROM mahasiswa WHERE id = ?', [userId], (err, results) => {
         if (err) {
-            console.error(stack);
+            console.error(err);
             return res.status(500).json({ message: 'Database error' });
         }
         res.json({ message: 'User deleted successfully' });
