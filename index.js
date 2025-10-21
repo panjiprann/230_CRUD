@@ -57,4 +57,11 @@ app.post('/api/mahasiswa', (req, res) => {
             res.status(201).json({ message: 'User added successfully'});
         }
     );
-});    
+});
+
+app.put('/api/mahasiswa/:id', (req, res) => {
+    const userId = req.params.id;
+    const { nama, nim, kelas, prodi } = req.body;
+    db.query(
+        'UPDATE mahasiswa SET nama = ?, nim = ?, kelas = ?, prodi = ? WHERE id = ?',
+        [nama, nim, kelas, prodi, userId],
